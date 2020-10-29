@@ -15,7 +15,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:gitImprovements.setCommitMessage"
+		"onCommand:gitImprovements.setCommitMessage",
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
