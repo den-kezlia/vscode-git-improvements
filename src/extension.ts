@@ -5,30 +5,28 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "prefillCommitMessage" is now active!');
-
 	const setRandomTheme = async () => {
 		const allExtensions = vscode.extensions.all;
 		const configuration = vscode.workspace.getConfiguration();
 		const themes: any[] = [];
+		const isEnableRandomTheme = configuration.get('gitImprovements.enableRandomTheme');
 
-		allExtensions.forEach(ext => {
-			if (ext.isActive) {
-				const packageJSON = ext.packageJSON;
+		if (isEnableRandomTheme) {
+			allExtensions.forEach(ext => {
+				if (ext.isActive) {
+					const packageJSON = ext.packageJSON;
 
-				if (packageJSON.contributes.themes && packageJSON.contributes.themes.length > 0) {
-					packageJSON.contributes.themes.forEach((item: { label: any; }) => {
-						themes.push(item.label);
-					});
+					if (packageJSON.contributes.themes && packageJSON.contributes.themes.length > 0) {
+						packageJSON.contributes.themes.forEach((item: { label: any; }) => {
+							themes.push(item.label);
+						});
+					}
 				}
-			}
-		});
+			});
 
-		const random = Math.floor(Math.random() * Math.floor(themes.length));
-		await configuration.update('workbench.colorTheme', themes[random]);
+			const random = Math.floor(Math.random() * Math.floor(themes.length));
+			await configuration.update('workbench.colorTheme', themes[random]);
+		}
 	};
 
 	setRandomTheme();

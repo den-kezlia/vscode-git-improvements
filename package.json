@@ -35,6 +35,16 @@
 				"command": "gitImprovements.setCommitMessage",
 				"group": "navigation"
 			}]
+		},
+		"configuration": {
+			"title": "VSCODE Extension",
+			"properties": {
+				"gitImprovements.enableRandomTheme": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable random theme on start up"
+				}
+			}
 		}
 	},
 	"scripts": {
