@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	};
 
-	setRandomTheme();
+	setTimeout(setRandomTheme, 2000);
 
 	let disposableSetCommitMessage = vscode.commands.registerCommand('gitImprovements.setCommitMessage', async(uri?) => {
 		const vscodeGit = vscode.extensions.getExtension('vscode.git');
