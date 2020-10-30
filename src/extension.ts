@@ -5,32 +5,6 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	const setRandomTheme = async () => {
-		const allExtensions = vscode.extensions.all;
-		const configuration = vscode.workspace.getConfiguration();
-		const themes: any[] = [];
-		const isEnableRandomTheme = configuration.get('gitImprovements.enableRandomTheme');
-
-		if (isEnableRandomTheme) {
-			allExtensions.forEach(ext => {
-				if (ext.isActive) {
-					const packageJSON = ext.packageJSON;
-
-					if (packageJSON.contributes.themes && packageJSON.contributes.themes.length > 0) {
-						packageJSON.contributes.themes.forEach((item: { label: any; }) => {
-							themes.push(item.label);
-						});
-					}
-				}
-			});
-
-			const random = Math.floor(Math.random() * Math.floor(themes.length));
-			await configuration.update('workbench.colorTheme', themes[random]);
-		}
-	};
-
-	setTimeout(setRandomTheme, 2000);
-
 	let disposableSetCommitMessage = vscode.commands.registerCommand('gitImprovements.setCommitMessage', async(uri?) => {
 		const vscodeGit = vscode.extensions.getExtension('vscode.git');
 		const gitExtension = vscodeGit && vscodeGit.exports;
