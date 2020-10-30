@@ -2,7 +2,7 @@
 	"name": "git-improvements",
 	"displayName": "gitImprovements",
 	"description": "",
-	"version": "0.0.2",
+	"version": "0.0.1",
 	"publisher": "den-kezlia",
 	"engines": {
 		"vscode": "^1.47.0"
